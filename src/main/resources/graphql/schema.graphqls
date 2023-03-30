@@ -1,0 +1,124 @@
+#source implementation:
+#https://www.youtube.com/watch?v=UBGzsb2UkeY
+#https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design
+#https://graphql.org/learn/
+
+type Author {
+    id: Int!
+    firstName: String!
+    lastName: String!
+    street: String!
+    city: String!
+    state: String!
+    postalCode: String!
+    phone: String!
+    email: String!
+    books: [Book!]
+}
+
+
+type Book {
+    id: Int!
+    isbn: String!
+    publishDate: String!
+    author: Author
+    title: String!
+    publisher: Publisher
+    price: Int!
+}
+
+type Publisher {
+    id: Int!
+    name: String!
+    street: String!
+    city: String!
+    state: String!
+    postalCode: String!
+    phone: String!
+    email: String!
+    books: [Book!]
+}
+
+type Query {
+    findAuthorById(id: Int!): Author
+    findBookById(id: Int!): Book
+    findPublisherById(id: Int!): Publisher
+}
+
+schema {
+    query: Query
+}
+
+
+#Test is with the following:
+
+#PUBLISHER
+
+#query {
+#  findPublisherById(id: 1) {
+#    id
+#    name
+#    street
+#    city
+#    state
+#    postalCode
+#    phone
+#    email
+#    books {
+#      id
+#      title
+#      publishDate
+#      publisher {
+#        id
+#        name
+#      }
+#    }
+#  }
+#}
+
+
+# AUTHOR
+
+#query {
+#  findAuthorById(id: 1) {
+#    id
+#    firstName
+#    lastName
+#    street
+#    city
+#    state
+#    postalCode
+#    phone
+#    email
+#    books {
+#      id
+#      title
+#      publishDate
+#      publisher {
+#        id
+#        name
+#      }
+#    }
+#  }
+#}
+
+#BOOK
+
+#query {
+#  findBookById(id: 1) {
+#    id
+#    isbn
+#    publishDate
+#    author {
+#      id
+#      firstName
+#      lastName
+#    }
+#    title
+#    publisher {
+#      id
+#      name
+#    }
+#    price
+#  }
+#}
