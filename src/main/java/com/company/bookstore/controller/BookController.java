@@ -95,12 +95,12 @@ public class BookController {
     @GetMapping("/books/author/{authorId}")
     public List<Book> findBooksByAuthorId(@PathVariable Author authorId) {
 
-        List<Book> librosDelRepositorio = bookRepository.findAllByAuthor(authorId);
+        List<Book> BookRepository = bookRepository.findAllByAuthor(authorId);
 
-        if (!librosDelRepositorio.isEmpty()) {
+        if (!BookRepository.isEmpty()) {
             //if there are customers found with the given state
             //then return them
-            return librosDelRepositorio;
+            return bookRepository;
 
         } else {
             //If there are no customers found with that state
